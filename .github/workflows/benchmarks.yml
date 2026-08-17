@@ -1,0 +1,45 @@
+name: benchmarks
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install SWI-Prolog
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y swi-prolog
+      - name: Run tests
+        run: swipl -q -s tests/test_benchmark.pl -g run_tests -t halt
+
+  selected-benchmarks:
+    runs-on: ubuntu-latest
+    needs: unit-tests
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install SWI-Prolog
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y swi-prolog
+      - name: Execute reproducible benchmark sample
+        run: |
+          swipl -q -s benchmark.pl -g "run_benchmark(rule_network_mnn,xor,[runs(10),warmup(2),seed(12345)])" -t halt
+      - name: Upload generated benchmark artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-artifacts
+          path: |
+            results/**
+            reports/**
+            graphs/**
+            BENCHMARKS.md
+            PARALLELS.md

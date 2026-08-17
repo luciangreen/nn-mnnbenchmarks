@@ -1,0 +1,2 @@
+benchmark_id,algorithm_id,dataset,wall_clock_mean_ms,accuracy
+memoized_lookup_mnn-xor-c4b7099-20260817212540,memoized_lookup_mnn,xor,0.008304913838704428,1

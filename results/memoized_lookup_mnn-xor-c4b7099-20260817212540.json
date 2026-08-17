@@ -1,0 +1,109 @@
+{
+  "algorithm_id":"memoized_lookup_mnn",
+  "algorithm_metadata": [
+    "family(mnn)",
+    "implementation('algorithms/memoized_lookup.pl')",
+    "deterministic(true)"
+  ],
+  "benchmark_id":"memoized_lookup_mnn-xor-c4b7099-20260817212540",
+  "benchmark_metadata": [
+    "input_type(binary_vector)",
+    "output_type(binary_class)",
+    "train_examples(4)",
+    "test_examples(4)"
+  ],
+  "complexity": {"theoretical":"O(1) average cached lookup"},
+  "counterexamples": [
+    "counterexample(no_cache_benefit_on_unique_inputs)",
+    "counterexample(symbolic_branching_not_soft_attention)",
+    "counterexample(unification_and_backtracking_have_no_direct_nn_equivalent)"
+  ],
+  "dataset":"xor",
+  "environment": {
+    "architecture":"x86_64-linux",
+    "cpu":"unknown",
+    "memory":"unknown",
+    "operating_system":"Linux",
+    "swi_prolog_version": [9, 0, 4 ]
+  },
+  "git_commit":"c4b7099df0318cc7efd9dbbbe4ce704b05a533c6",
+  "implementation_version":"basic-v1",
+  "last_trace": ["activated(cache_hit([1,1]))" ],
+  "nn_reference": {
+    "accuracy":1.0,
+    "inference_time_ms":0.02,
+    "notes":"Tiny MLP reference trained offline",
+    "precision":1.0,
+    "recall":1.0,
+    "training_time_ms":1.1
+  },
+  "optimization": {
+    "after_inferences":61,
+    "after_memory":760,
+    "after_runtime":0.008304913838704428,
+    "before_inferences":61,
+    "before_memory":760,
+    "before_runtime":0.008304913838704428,
+    "speedup":1.0,
+    "structural_reduction":0
+  },
+  "options": {"runs":3, "seed":7, "warmup":0},
+  "output": {
+    "accuracy":1,
+    "consistency":"deterministic",
+    "correct":4,
+    "deterministic_reproducibility":true,
+    "errors":0,
+    "exact_match_accuracy":1,
+    "failures":0,
+    "total":4
+  },
+  "parallels": [
+    "parallel(computation_graph,dependency_graph,[class(structural_parallel),confidence(0.7),evidence_source(conjecture),evidence([dependency_count]),benchmark_ids(['memoized_lookup_mnn-xor-c4b7099-20260817212540']),counterexamples([]),limitations([no_differentiable_weights])])",
+    "parallel(memoisation,activation_cache,[class(memory_parallel),confidence(0.82),evidence_source(empirical),evidence([runtime_reduction,repeated_subproblem]),benchmark_ids(['memoized_lookup_mnn-xor-c4b7099-20260817212540']),counterexamples([]),limitations([cache_warmup_cost])])",
+    "parallel(routing,conditional_activation,[class(routing_parallel),confidence(0.75),evidence_source(empirical),evidence([branch_selection,selective_execution]),benchmark_ids(['memoized_lookup_mnn-xor-c4b7099-20260817212540']),counterexamples([]),limitations([symbolic_conditions_not_gradient_based])])"
+  ],
+  "performance": {
+    "cpu_ms": {
+      "max":0.018927000000001915,
+      "mean":0.008924333333335902,
+      "median":0.00721900000000969,
+      "min":0.005152000000008261,
+      "stddev":0.004752311250561423
+    },
+    "inferences": {"max":70, "mean":61, "median":61, "min":52, "stddev":9.0},
+    "latency_ms":0.008304913838704428,
+    "memory_bytes": {"max":760, "mean":760, "median":760, "min":760, "stddev":0.0},
+    "peak_memory_bytes":760,
+    "repeated_run_variance":0.004553767121537312,
+    "throughput":481.6425645933014,
+    "wall_clock_ms": {
+      "max":0.017881393432617188,
+      "mean":0.008304913838704428,
+      "median":0.00667572021484375,
+      "min":0.00476837158203125,
+      "stddev":0.004553767121537312
+    }
+  },
+  "reproducibility": {
+    "command":"swipl -q -s benchmark.pl -g \"run_benchmark(memoized_lookup_mnn,xor,[runs(3)])\" -t halt",
+    "seed":7
+  },
+  "reproduction": {
+    "command":"swipl -q -s benchmark.pl -g \"run_benchmark(memoized_lookup_mnn,xor,[runs(3)])\" -t halt"
+  },
+  "run_id":"memoized_lookup_mnn-xor-c4b7099-20260817212540",
+  "structural": {
+    "branch_count":2,
+    "decision_depth":2,
+    "dependency_count":3,
+    "determinism":"deterministic",
+    "index_accesses":1,
+    "intermediate_values":1,
+    "memoisation_entries":1,
+    "predicate_count":4,
+    "recursion_depth":0,
+    "rule_count":3
+  },
+  "timestamp":"2026-08-17T21:25:40Z"
+}
