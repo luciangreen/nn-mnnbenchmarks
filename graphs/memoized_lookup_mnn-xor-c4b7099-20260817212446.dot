@@ -1,0 +1,6 @@
+digraph mnn {
+  input -> predicate_stage_1;
+  predicate_stage_1 -> branch_1;
+  predicate_stage_1 -> branch_2;
+  predicate_stage_1 -> output;
+}

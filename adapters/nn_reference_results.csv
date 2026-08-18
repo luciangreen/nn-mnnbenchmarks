@@ -1,0 +1,4 @@
+dataset,model,training_time_ms,inference_time_ms,accuracy,precision,recall
+xor,reference_model,1.1,0.02,1.0,1.0,1.0
+and_gate,reference_model,1.0,0.02,1.0,1.0,1.0
+route_simple,reference_model,0.8,0.02,1.0,1.0,1.0

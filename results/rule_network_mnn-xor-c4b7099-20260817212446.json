@@ -1,0 +1,105 @@
+{
+  "algorithm_id":"rule_network_mnn",
+  "algorithm_metadata": [
+    "family(mnn)",
+    "implementation('algorithms/rule_network.pl')",
+    "deterministic(true)"
+  ],
+  "benchmark_id":"rule_network_mnn-xor-c4b7099-20260817212446",
+  "benchmark_metadata": [
+    "input_type(binary_vector)",
+    "output_type(binary_class)",
+    "train_examples(4)",
+    "test_examples(4)"
+  ],
+  "complexity": {"theoretical":"O(rules)"},
+  "counterexamples": [
+    "counterexample(unification_and_backtracking_have_no_direct_nn_equivalent)"
+  ],
+  "dataset":"xor",
+  "environment": {
+    "architecture":"x86_64-linux",
+    "cpu":"unknown",
+    "memory":"unknown",
+    "operating_system":"Linux",
+    "swi_prolog_version": [9, 0, 4 ]
+  },
+  "git_commit":"c4b7099df0318cc7efd9dbbbe4ce704b05a533c6",
+  "implementation_version":"basic-v1",
+  "last_trace": ["activated(input([1,1]))", "activated(rule_xor)" ],
+  "nn_reference": {
+    "accuracy":1.0,
+    "inference_time_ms":0.02,
+    "notes":"Tiny MLP reference trained offline",
+    "precision":1.0,
+    "recall":1.0,
+    "training_time_ms":1.1
+  },
+  "optimization": {
+    "after_inferences":59,
+    "after_memory":808,
+    "after_runtime":0.005245208740234375,
+    "before_inferences":59,
+    "before_memory":808,
+    "before_runtime":0.005245208740234375,
+    "speedup":1.0,
+    "structural_reduction":0
+  },
+  "options": {"runs":3, "seed":42, "warmup":1},
+  "output": {
+    "accuracy":1,
+    "consistency":"deterministic",
+    "correct":4,
+    "deterministic_reproducibility":true,
+    "errors":0,
+    "exact_match_accuracy":1,
+    "failures":0,
+    "total":4
+  },
+  "parallels": [
+    "parallel(computation_graph,dependency_graph,[class(structural_parallel),confidence(0.7),evidence_source(conjecture),evidence([dependency_count]),benchmark_ids(['rule_network_mnn-xor-c4b7099-20260817212446']),counterexamples([]),limitations([no_differentiable_weights])])"
+  ],
+  "performance": {
+    "cpu_ms": {
+      "max":0.007118000000000402,
+      "mean":0.0057840000000040455,
+      "median":0.00530900000000889,
+      "min":0.004925000000002844,
+      "stddev":0.0009562185942533819
+    },
+    "inferences": {"max":59, "mean":59, "median":59, "min":59, "stddev":0.0},
+    "latency_ms":0.005245208740234375,
+    "memory_bytes": {"max":808, "mean":808, "median":808, "min":808, "stddev":0.0},
+    "peak_memory_bytes":808,
+    "repeated_run_variance":0.0008485379419351666,
+    "throughput":762.6007272727272,
+    "wall_clock_ms": {
+      "max":0.0064373016357421875,
+      "mean":0.005245208740234375,
+      "median":0.00476837158203125,
+      "min":0.0045299530029296875,
+      "stddev":0.0008485379419351666
+    }
+  },
+  "reproducibility": {
+    "command":"swipl -q -s benchmark.pl -g \"run_benchmark(rule_network_mnn,xor,[runs(3)])\" -t halt",
+    "seed":42
+  },
+  "reproduction": {
+    "command":"swipl -q -s benchmark.pl -g \"run_benchmark(rule_network_mnn,xor,[runs(3)])\" -t halt"
+  },
+  "run_id":"rule_network_mnn-xor-c4b7099-20260817212446",
+  "structural": {
+    "branch_count":1,
+    "decision_depth":1,
+    "dependency_count":2,
+    "determinism":"deterministic",
+    "index_accesses":0,
+    "intermediate_values":1,
+    "memoisation_entries":0,
+    "predicate_count":3,
+    "recursion_depth":0,
+    "rule_count":1
+  },
+  "timestamp":"2026-08-17T21:24:46Z"
+}
