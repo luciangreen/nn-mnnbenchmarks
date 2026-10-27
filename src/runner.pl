@@ -44,7 +44,7 @@ run_benchmark(Algorithm, Dataset, Options, Report) :-
     now_iso(Timestamp),
     git_commit(Commit),
     benchmark_id(Algorithm, Dataset, Commit, Timestamp, BenchmarkID),
-    reproduction_command(Algorithm, Dataset, Runs, Command),
+    reproduction_command(Algorithm, Dataset, Runs, Warmup, Seed, Command),
     nn_reference_result(Dataset, reference_model, NNReference),
     stringify_terms(FinalTrace, FinalTraceText),
     BeforeRuntime = Performance.wall_clock_ms.mean,
@@ -211,10 +211,10 @@ benchmark_id(Algorithm, Dataset, Commit, Timestamp, BenchmarkID) :-
     atomic_list_concat(Parts, '', Compact),
     format(atom(BenchmarkID), '~w-~w-~w-~w', [Algorithm, Dataset, Short, Compact]).
 
-reproduction_command(Algorithm, Dataset, Runs, Command) :-
+reproduction_command(Algorithm, Dataset, Runs, Warmup, Seed, Command) :-
     format(atom(Command),
-        'swipl -q -s benchmark.pl -g "run_benchmark(~w,~w,[runs(~w)])" -t halt',
-        [Algorithm, Dataset, Runs]).
+        'swipl -q -s benchmark.pl -g "run_benchmark(~w,~w,[runs(~w),warmup(~w),seed(~w)])" -t halt',
+        [Algorithm, Dataset, Runs, Warmup, Seed]).
 
 collect_counterexamples(Parallels, Counterexamples) :-
     findall(C,
